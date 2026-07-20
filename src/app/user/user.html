@@ -1,0 +1,34 @@
+<h2>User List</h2>
+
+<!-- <ul>
+  @for (user of users; track user.id) {
+    <li>
+      {{ user.name }} — Age: {{ user.age }}
+      @if (user.age >= 18) {
+        <strong>Adult</strong>
+      } @else {
+        <strong>Minor</strong>
+      }
+      <button (click)="navigateToUserDetail2(user.id)">Display Details</button>
+    </li>
+  }
+</ul> -->
+
+<ul>
+  @for (user of users; track user.id) {
+    <li>
+      <p>{{ user.name }}</p>
+
+      <button
+        (click)="navigateToUserDetail2(user.id)"
+        style="margin-right: 10px;">
+        View Details
+      </button>
+
+      <app-user-card
+        [user]="user"
+        (deleteUserWithID)="deleteUserWithID($event)">
+      </app-user-card>
+    </li>
+  }
+</ul>
