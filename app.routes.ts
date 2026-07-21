@@ -8,7 +8,7 @@ import { Routes } from '@angular/router';
 //importing the User class (the component) from user.ts
 //path is ./user/user
 //importing so we can use in lines down
-import { User } from './user/user';
+import { UserComponent } from './user/user';
 
 //importing the User class (the component) from user-detail.ts
 //path is ./user-detail/user-detail
@@ -20,7 +20,8 @@ import { UserDetail } from './user-detail/user-detail';
 //its an array because app can have many routes each one is an object describing one URL pattern 
 export const routes: Routes = [
 //when url is /users display the User (class name) component    
-    {path: 'users', component: User},
+    {path: 'users', component: UserComponent
+    },
 //when url looks like /users/ followed by something display UserDetail
 //:id is a route parameter : colon means this segment is a variable 
     {path: 'users/:id', component: UserDetail},

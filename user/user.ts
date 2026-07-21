@@ -1,16 +1,16 @@
 //decorator function turns plain text to angular component (every component file need this)
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 //importing Router service class (this only works because provideRouter(routes) was registeres in app.config.ts)
 import { Router } from '@angular/router'
 
-//defining a TypeScript interface (custome type describing the shape an object)
-//it says:any UserModel object must have a numeric id, a string name, and a numeric age
-interface UserModel {
-  id: number;
-  name: string;
-  age: number;
-}
+import { UserCard } from '../user-card/user-card'; 
+
+import { GetUsers } from '../services/get-users';
+
+import { User } from '../models/user';
+
+import { FormsModule } from '@angular/forms';
 
 //this decorator marks the class below as a component
 //selector defines tag name <app-user></app-user> 
@@ -20,24 +20,42 @@ interface UserModel {
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [],
+  imports: [UserCard, FormsModule],
   templateUrl: './user.html',
   styleUrl: './user.scss',
 
 })
 
-//declaring actual class named User, this is the exact class that gets imported and refrenced
-export class User {
-  users: UserModel[] = [
-    { id: 1, name: 'Alice', age: 25 },
-    { id: 2, name: 'Bob', age: 16 },
-    { id: 3, name: 'Charlie', age: 30 },
-    { id: 4, name: 'Diana', age: 12 },
-  ];
+export class UserComponent implements OnInit {
 
-  constructor(private router: Router){}
+  users: User[] = [];
 
-  navigateToUserDetail2(userID: number){
-    this.router.navigate(['/users', userID])
+  constructor(
+    private router: Router,
+    private getusers: GetUsers
+  ) { }
+
+  ngOnInit(): void {
+    this.users = this.getusers.getUsers();
+  }
+
+  navigateToUserDetail2(userID: number) {
+    this.router.navigate(['/users', userID]);
+  }
+
+  deleteUserWithID(userId: number) {
+    this.users = this.users.filter(u => u.id !== userId);
+  }
+
+  newUserName = '';
+
+  addUser() {
+  if (!this.newUserName.trim()) return;
+
+  this.getusers.addUser(this.newUserName);
+
+  this.users = this.getusers.getUsers();
+
+  this.newUserName = '';
   }
 }
