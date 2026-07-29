@@ -1,19 +1,5 @@
 <h2>User List</h2>
 
-<!-- <ul>
-  @for (user of users; track user.id) {
-    <li>
-      {{ user.name }} — Age: {{ user.age }}
-      @if (user.age >= 18) {
-        <strong>Adult</strong>
-      } @else {
-        <strong>Minor</strong>
-      }
-      <button (click)="navigateToUserDetail2(user.id)">Display Details</button>
-    </li>
-  }
-</ul> -->
-
 <ul>
   @for (user of users; track user.id) {
     <li>
@@ -32,3 +18,10 @@
     </li>
   }
 </ul>
+
+<input
+  type="text"
+  [(ngModel)]="newUserName"
+  placeholder="Enter user name">
+
+<button (click)="addUser()">Add User</button>
