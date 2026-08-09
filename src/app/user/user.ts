@@ -12,6 +12,8 @@ import { User } from '../models/user';
 
 import { FormsModule } from '@angular/forms';
 
+import { UserDetail } from '../user-detail/user-detail';
+
 //this decorator marks the class below as a component
 //selector defines tag name <app-user></app-user> 
 //standalone: this component manages its imports directly
@@ -20,7 +22,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [UserCard, FormsModule],
+  imports: [UserCard, FormsModule, UserDetail],
   templateUrl: './user.html',
   styleUrl: './user.scss',
 

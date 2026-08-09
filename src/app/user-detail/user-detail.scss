@@ -1,0 +1,99 @@
+.form-container {
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 32px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.form-container h2 {
+  margin-top: 0;
+  margin-bottom: 24px;
+  color: #1a1a2e;
+  font-size: 22px;
+}
+
+.form-field {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field label {
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.form-field input,
+.form-field select {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.form-field input.ng-invalid.ng-touched,
+.form-field select.ng-invalid.ng-touched {
+  border-color: #e11d48;
+}
+
+.error-text {
+  color: #e11d48;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-save {
+  background: #4f46e5;
+  color: white;
+}
+
+.btn-save:hover:not(:disabled) {
+  background: #4338ca;
+}
+
+.btn-save:disabled {
+  background: #c7c7d9;
+  cursor: not-allowed;
+}
+
+.btn-reset {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.btn-reset:hover {
+  background: #e5e7eb;
+}

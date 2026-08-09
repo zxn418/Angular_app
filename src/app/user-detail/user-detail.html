@@ -1,11 +1,58 @@
-<h2>User Detail</h2>
+<div class="form-container">
+  <h2>Employee Form</h2>
 
-@if (selectedUser) {
-  <p><strong>ID:</strong> {{ selectedUser.id }}</p>
-  <p><strong>Name:</strong> {{ selectedUser.name }}</p>
-  <p><strong>Age:</strong> {{ selectedUser.age }}</p>
-} @else {
-  <p>User not found.</p>
-}
+  <form [formGroup]="employeeForm" (ngSubmit)="onSave()">
 
-<button (click)="goBack()">Back to Users</button>
+    <div class="form-field">
+      <label>First Name:</label>
+      <input type="text" formControlName="firstName" />
+      <span class="error-text" *ngIf="employeeForm.get('firstName')?.invalid && employeeForm.get('firstName')?.touched">
+        First name is required.
+      </span>
+    </div>
+
+    <div class="form-field">
+      <label>Last Name:</label>
+      <input type="text" formControlName="lastName" />
+      <span class="error-text" *ngIf="employeeForm.get('lastName')?.invalid && employeeForm.get('lastName')?.touched">
+        Last name is required.
+      </span>
+    </div>
+
+    <div class="form-field">
+      <label>Email:</label>
+      <input type="email" formControlName="email" />
+      <span class="error-text" *ngIf="employeeForm.get('email')?.invalid && employeeForm.get('email')?.touched">
+        Valid email is required.
+      </span>
+    </div>
+
+    <div class="form-field">
+      <label>Phone:</label>
+      <input type="text" formControlName="phone" />
+      <span class="error-text" *ngIf="employeeForm.get('phone')?.invalid && employeeForm.get('phone')?.touched">
+        10-digit phone number required.
+      </span>
+    </div>
+
+    <div class="form-field">
+      <label>Department:</label>
+      <select formControlName="department">
+        <option value="">-- Select --</option>
+        <option value="IT">IT</option>
+        <option value="HR">HR</option>
+        <option value="Engineering">Engineering</option>
+        <option value="Sales">Sales</option>
+      </select>
+      <span class="error-text" *ngIf="employeeForm.get('department')?.invalid && employeeForm.get('department')?.touched">
+        Department is required.
+      </span>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-save" [disabled]="employeeForm.invalid">Save</button>
+      <button type="button" class="btn btn-reset" (click)="onReset()">Reset</button>
+    </div>
+
+  </form>
+</div>
